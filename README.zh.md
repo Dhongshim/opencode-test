@@ -11,14 +11,18 @@
 ## 安装
 
 ```bash
-npm install -g opencode-test
+npm ci
+npm pack
+npm install -g xxxxxxxx.tgz
 ```
 
 ## 快速开始
 
 ### 1. 全局安装
 ```bash
-npm install -g opencode-test
+npm ci
+npm pack
+npm install -g xxxxxxxx.tgz
 ```
 
 ### 2. 在项目中初始化

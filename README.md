@@ -11,14 +11,18 @@ YAML-based Playwright MCP testing framework CLI for OpenCode. This is the **offi
 ## Installation
 
 ```bash
-npm install -g opencode-test
+npm ci
+npm pack
+npm install -g xxxxxxxx.tgz
 ```
 
 ## Quick Start
 
 ### 1. Install globally
 ```bash
-npm install -g opencode-test
+npm ci
+npm pack
+npm install -g xxxxxxxx.tgz
 ```
 
 ### 2. Initialize in your project
