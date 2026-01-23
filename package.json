@@ -1,0 +1,105 @@
+{
+  "name": "opencode-test",
+  "version": "1.3.7",
+  "description": "YAML-based Playwright MCP testing framework for OpenCode",
+  "keywords": [
+    "opencode",
+    "playwright",
+    "mcp",
+    "yaml",
+    "testing",
+    "automation",
+    "cli"
+  ],
+  "main": "lib/index.js",
+  "bin": {
+    "opencode-test": "bin/opencode-test.js"
+  },
+  "scripts": {
+    "test": "jest --testPathIgnorePatterns=test/integration test/performance test/compatibility test/error-handling test/cli-e2e.test.js",
+    "test:coverage": "jest --coverage --testPathIgnorePatterns=test/integration test/performance test/compatibility test/error-handling test/cli-e2e.test.js",
+    "test:watch": "jest --watch",
+    "test:unit": "jest --testPathPattern=\"test/(commands|utils)\"",
+    "test:integration": "jest --testPathPattern=\"test/integration\"",
+    "test:e2e": "RUN_E2E_TESTS=true jest --testPathPattern=\"test/cli-e2e.test.js\"",
+    "test:performance": "jest --testPathPattern=\"test/performance\"",
+    "test:compatibility": "jest --testPathPattern=\"test/compatibility\"",
+    "test:error-handling": "jest --testPathPattern=\"test/error-handling\"",
+    "test:all": "node scripts/test-runner.js",
+    "perf:monitor": "node scripts/performance-monitor.js",
+    "lint": "eslint lib/ bin/ test/",
+    "lint:fix": "eslint lib/ bin/ test/ --fix",
+    "sync-templates": "node scripts/sync-templates.js",
+    "prepack": "npm run sync-templates && npm run lint && npm test",
+    "prepublishOnly": "node scripts/pre-publish-check.js",
+    "prepublish-check": "node scripts/pre-publish-check.js",
+    "release:patch": "node scripts/release.js patch",
+    "release:minor": "node scripts/release.js minor",
+    "release:major": "node scripts/release.js major",
+    "release": "node scripts/release.js",
+    "ci": "npm ci && npm run sync-templates && npm run lint && npm run test:coverage"
+  },
+  "dependencies": {
+    "commander": "^11.1.0",
+    "fs-extra": "^11.2.0",
+    "semver": "^7.5.4",
+    "chalk": "^4.1.2",
+    "ora": "^5.4.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "eslint": "^8.57.0",
+    "dotenv": "^16.3.1",
+    "js-yaml": "^4.1.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/terryso/opencode-test.git"
+  },
+  "bugs": {
+    "url": "https://github.com/terryso/opencode-test/issues"
+  },
+  "homepage": "https://github.com/terryso/opencode-test#readme",
+  "author": "terryso <oxtiger@gmail.com>",
+  "license": "MIT",
+  "files": [
+    "bin/",
+    "lib/",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/test/**/*.test.js",
+      "**/.opencode/scripts/**/*.test.js"
+    ],
+    "collectCoverageFrom": [
+      "lib/**/*.js",
+      "bin/**/*.js",
+      ".opencode/scripts/**/*.js",
+      "!lib/templates/**/*",
+      "!**/*.test.js"
+    ],
+    "coverageReporters": [
+      "text",
+      "html",
+      "lcov"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 45,
+        "functions": 75,
+        "lines": 60,
+        "statements": 60
+      }
+    }
+  }
+}
