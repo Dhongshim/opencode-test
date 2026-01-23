@@ -1,6 +1,6 @@
-# Contributing to claude-test
+# Contributing to opencode-test
 
-Thank you for your interest in contributing to claude-test! This document provides guidelines for contributing to the project.
+Thank you for your interest in contributing to opencode-test! This document provides guidelines for contributing to the project.
 
 ## Development Setup
 
@@ -14,8 +14,8 @@ Thank you for your interest in contributing to claude-test! This document provid
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/anthropics/claude-test.git
-   cd claude-test
+   git clone https://github.com/anthropics/opencode-test.git
+   cd opencode-test
    ```
 
 2. **Install dependencies**:
@@ -38,8 +38,8 @@ Thank you for your interest in contributing to claude-test! This document provid
 5. **Test CLI locally**:
    ```bash
    npm pack
-   npm install -g ./claude-test-*.tgz
-   claude-test --version
+   npm install -g ./opencode-test-*.tgz
+   opencode-test --version
    ```
 
 ## Code Quality Standards
@@ -105,9 +105,9 @@ npm run release:major
 
 3. **Manual Verification**: After release:
    ```bash
-   npm install -g claude-test@latest
-   claude-test --version
-   claude-test --help
+   npm install -g opencode-test@latest
+   opencode-test --version
+   opencode-test --help
    ```
 
 ## Pull Request Guidelines
@@ -176,7 +176,7 @@ Please include:
 - **Node.js version**: `node --version`
 - **npm version**: `npm --version`
 - **Operating system**: macOS/Linux
-- **claude-test version**: `claude-test --version`
+- **opencode-test version**: `opencode-test --version`
 - **Error message**: Full error output
 - **Steps to reproduce**: Clear reproduction steps
 - **Expected behavior**: What should happen
@@ -202,4 +202,4 @@ This project follows the [Contributor Covenant Code of Conduct](https://www.cont
 
 ## License
 
-By contributing to claude-test, you agree that your contributions will be licensed under the MIT License.
+By contributing to opencode-test, you agree that your contributions will be licensed under the MIT License.

@@ -65,12 +65,12 @@ REPORT_STYLE=detailed
 
 ## 命令
 
-### `claude-test init`
+### `opencode-test init`
 
 在当前项目目录中初始化测试框架。
 
 ```bash
-claude-test init [选项]
+opencode-test init [选项]
 ```
 
 **选项:**
@@ -80,18 +80,18 @@ claude-test init [选项]
 **示例:**
 ```bash
 # 基础初始化
-claude-test init
+opencode-test init
 
 # 强制重新初始化并显示详细输出
-claude-test init --force --verbose
+opencode-test init --force --verbose
 ```
 
-### `claude-test update`
+### `opencode-test update`
 
 将框架更新到最新版本。
 
 ```bash
-claude-test update [选项]
+opencode-test update [选项]
 ```
 
 **选项:**
@@ -102,21 +102,21 @@ claude-test update [选项]
 **示例:**
 ```bash
 # 带备份的更新
-claude-test update --backup
+opencode-test update --backup
 
 # 预览更改但不应用
-claude-test update --dry-run
+opencode-test update --dry-run
 
 # 详细更新过程
-claude-test update --verbose
+opencode-test update --verbose
 ```
 
-### `claude-test check`
+### `opencode-test check`
 
 检查框架版本和状态。
 
 ```bash
-claude-test check [选项]
+opencode-test check [选项]
 ```
 
 **选项:**
@@ -127,13 +127,13 @@ claude-test check [选项]
 **示例:**
 ```bash
 # 基础状态检查
-claude-test check
+opencode-test check
 
 # 检查并修复问题
-claude-test check --fix
+opencode-test check --fix
 
 # 详细状态报告
-claude-test check --verbose
+opencode-test check --verbose
 ```
 
 ## 框架特性
@@ -150,11 +150,11 @@ claude-test check --verbose
 
 ## 项目结构
 
-运行 `claude-test init` 后，您的项目将包含：
+运行 `opencode-test init` 后，您的项目将包含：
 
 ```
-.claude/
-├── commands/                     # Claude Code命令
+.opencode/
+├── commands/                     # opencode Code命令
 │   ├── run-yaml-test.md         # 执行单个测试
 │   ├── run-test-suite.md        # 执行测试套件
 │   ├── validate-yaml-test.md    # 验证测试语法
@@ -182,7 +182,7 @@ CLI自动管理框架版本：
 ## 系统要求
 
 - **Node.js**: >= 16.0.0
-- **Claude Code**: 带Playwright MCP集成
+- **opencode Code**: 带Playwright MCP集成
 - **NPM**: 用于全局安装
 
 ## 实际示例
@@ -271,12 +271,12 @@ REPORT_PATH=reports/prod
 
 ### 问: 如何更新我的测试框架？
 ```bash
-claude-test update --backup --verbose
+opencode-test update --backup --verbose
 ```
 这会创建备份并在更新过程中显示详细输出。
 
 ### 问: 我的测试失败了，如何调试？
-1. 检查框架完整性: `claude-test check --verbose`
+1. 检查框架完整性: `opencode-test check --verbose`
 2. 验证测试语法: `/validate-yaml-test file:your-test.yml`
 3. 使用详细报告运行: 在.env文件中设置 `REPORT_STYLE=detailed`
 4. 查看生成的HTML报告: `/view-reports-index`
@@ -312,10 +312,10 @@ steps:
 ### 问: 如果框架文件损坏怎么办？
 ```bash
 # 检查问题
-claude-test check --fix
+opencode-test check --fix
 
 # 或者强制重新安装
-claude-test init --force
+opencode-test init --force
 ```
 
 ### 问: 如何查看历史测试报告？
@@ -329,16 +329,16 @@ claude-test init --force
 ### 找不到框架
 ```bash
 # 错误: 在当前目录中找不到框架
-claude-test init
+opencode-test init
 ```
 
 ### 版本不匹配
 ```bash
 # 检查版本
-claude-test check --verbose
+opencode-test check --verbose
 
 # 更新框架
-claude-test update
+opencode-test update
 ```
 
 ### 权限问题
@@ -351,14 +351,14 @@ sudo npm install -g opencode-test
 1. **验证测试语法**: `/validate-yaml-test file:your-test.yml`
 2. **检查环境变量**: 确保所有 `{{VARIABLES}}` 都已定义
 3. **验证步骤库**: 确保所有 `include:` 引用都存在
-4. **检查Playwright MCP**: 确保Claude Code已集成Playwright
+4. **检查Playwright MCP**: 确保opencode Code已集成Playwright
 
 ## CLI开发架构
 
-本项目是claude-test框架的**官方CLI工具**，包含：
+本项目是opencode-test框架的**官方CLI工具**，包含：
 
 ### 核心组件
-- **CLI入口**: `bin/claude-test.js` - 基于Commander.js的三个主要命令
+- **CLI入口**: `bin/opencode-test.js` - 基于Commander.js的三个主要命令
 - **命令实现**: `lib/commands/` - init、update、check命令的实现
 - **工具函数**: `lib/utils/` - 核心业务逻辑（文件管理、版本控制）
 - **模板文件**: `lib/templates/` - 复制到用户项目的框架文件
@@ -366,7 +366,7 @@ sudo npm install -g opencode-test
 ### 开发脚本
 - `npm test` - 运行Jest测试套件，84.95%代码覆盖率
 - `npm run lint` - ESLint验证
-- `npm run test:coverage` - 覆盖率分析，包含.claude/scripts
+- `npm run test:coverage` - 覆盖率分析，包含.opencode/scripts
 - `npm run sync-templates` - 同步框架模板
 - `npm run ci` - 完整CI流水线
 
@@ -381,7 +381,7 @@ sudo npm install -g opencode-test
 
 **实际使用示例**和**集成演示**请访问配套项目：
 
-📖 **[claude-test-demo](https://github.com/terryso/claude-code-playwright-mcp-test)** - 完整的使用示例、测试用例和集成指南
+📖 **[opencode-test-demo](https://github.com/terryso/opencode-code-playwright-mcp-test)** - 完整的使用示例、测试用例和集成指南
 
 ## 开发和测试
 
@@ -400,10 +400,10 @@ sudo npm install -g opencode-test
 
 问题和咨询：
 
-- **GitHub Issues**: [报告Bug](https://github.com/terryso/claude-test/issues)
-- **完整文档**: [完整文档](https://github.com/terryso/claude-test#readme)
-- **演示项目**: [claude-code-playwright-mcp-test](https://github.com/terryso/claude-code-playwright-mcp-test)
-- **Claude Code文档**: [https://docs.anthropic.com/en/docs/claude-code](https://docs.anthropic.com/en/docs/claude-code)
+- **GitHub Issues**: [报告Bug](https://github.com/terryso/opencode-test/issues)
+- **完整文档**: [完整文档](https://github.com/terryso/opencode-test#readme)
+- **演示项目**: [opencode-code-playwright-mcp-test](https://github.com/terryso/opencode-code-playwright-mcp-test)
+- **opencode Code文档**: [https://docs.anthropic.com/en/docs/opencode-code](https://docs.anthropic.com/en/docs/opencode-code)
 
 ## 许可证
 
@@ -411,4 +411,4 @@ MIT许可证 - 详见 [LICENSE](LICENSE) 文件。
 
 ---
 
-**由Anthropic团队为Claude Code社区用❤️制作。**
+**由Anthropic团队为opencode Code社区用❤️制作。**

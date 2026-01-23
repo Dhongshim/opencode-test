@@ -105,5 +105,5 @@ Thumbs.db
 # Backup files
 *.backup
 *-backup-*
-.claude/settings.local.json
+.opencode/settings.local.json
 test-reports/

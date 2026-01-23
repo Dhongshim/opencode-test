@@ -1,4 +1,4 @@
-# claude-test CLI 工具用户故事
+# opencode-test CLI 工具用户故事
 
 ## 项目概述
 
@@ -10,32 +10,32 @@
 
 ### US-001: 重组框架文件结构
 **作为** 框架维护者  
-**我希望** 将所有框架文件整理到 `.claude` 目录下  
+**我希望** 将所有框架文件整理到 `.opencode` 目录下  
 **以便** 避免与用户项目文件冲突并便于管理
 
 **验收标准:**
-- [x] 将 `scripts/` 目录移动到 `.claude/scripts/`
-- [x] 保持 `.claude/commands/` 目录不变
-- [x] 更新所有命令文件中的脚本路径引用 (`scripts/` → `.claude/scripts/`)
+- [x] 将 `scripts/` 目录移动到 `.opencode/scripts/`
+- [x] 保持 `.opencode/commands/` 目录不变
+- [x] 更新所有命令文件中的脚本路径引用 (`scripts/` → `.opencode/scripts/`)
 - [x] 确保所有现有功能正常运行
 
 **任务分解:**
 - 移动 scripts 目录
-- 批量更新 `.claude/commands/*.md` 文件中的路径
-- 更新 CLAUDE.md 中的路径引用
+- 批量更新 `.opencode/commands/*.md` 文件中的路径
+- 更新 opencode.md 中的路径引用
 - 运行测试确保功能正常
 
 ---
 
 ## Epic 2: CLI 工具开发
 
-### US-002: 创建 claude-test NPM 包项目
+### US-002: 创建 opencode-test NPM 包项目
 **作为** 开发者  
 **我希望** 创建一个新的 NPM 包项目  
 **以便** 发布和分发测试框架
 
 **验收标准:**
-- [x] 创建新的 NPM 包项目 `claude-test`
+- [x] 创建新的 NPM 包项目 `opencode-test`
 - [x] 配置 package.json 和基本项目结构
 - [x] 设置 CLI 入口点和基本命令结构
 - [x] 添加项目文档和使用说明
@@ -46,15 +46,15 @@
 - 创建 CLI 入口文件
 - 设置基本命令框架
 
-### US-003: 实现 claude-test init 命令
+### US-003: 实现 opencode-test init 命令
 **作为** 项目使用者  
-**我希望** 通过 `claude-test init` 命令  
+**我希望** 通过 `opencode-test init` 命令  
 **以便** 快速在我的项目中初始化测试框架
 
 **验收标准:**
-- [x] 复制 `.claude/` 目录到目标项目
-- [x] 创建 `.claude/.framework-version` 文件记录版本
-- [x] 不复制 CLAUDE.md（避免冲突）
+- [x] 复制 `.opencode/` 目录到目标项目
+- [x] 创建 `.opencode/.framework-version` 文件记录版本
+- [x] 不复制 opencode.md（避免冲突）
 - [x] 提供初始化成功的确认信息
 
 **任务分解:**
@@ -63,9 +63,9 @@
 - 添加错误处理
 - 编写使用文档
 
-### US-004: 实现 claude-test update 命令
+### US-004: 实现 opencode-test update 命令
 **作为** 项目使用者  
-**我希望** 通过 `claude-test update` 命令  
+**我希望** 通过 `opencode-test update` 命令  
 **以便** 更新框架到最新版本
 
 **验收标准:**
@@ -80,9 +80,9 @@
 - 添加备份机制
 - 处理更新冲突
 
-### US-005: 实现 claude-test check 命令
+### US-005: 实现 opencode-test check 命令
 **作为** 项目使用者  
-**我希望** 通过 `claude-test check` 命令  
+**我希望** 通过 `opencode-test check` 命令  
 **以便** 检查当前框架版本和状态
 
 **验收标准:**
@@ -107,8 +107,8 @@
 **以便** 不依赖外部文档就能理解和使用命令
 
 **验收标准:**
-- [x] 每个 `.claude/commands/*.md` 文件包含完整说明
-- [x] 移除对 CLAUDE.md 的依赖
+- [x] 每个 `.opencode/commands/*.md` 文件包含完整说明
+- [x] 移除对 opencode.md 的依赖
 - [x] 确保每个命令都是自包含的
 - [x] 统一命令文档格式
 
@@ -200,9 +200,9 @@
 
 ### 目录结构设计
 ```
-claude-test/
+opencode-test/
 ├── bin/
-│   └── claude-test.js          # CLI 入口点
+│   └── opencode-test.js          # CLI 入口点
 ├── lib/
 │   ├── commands/
 │   │   ├── init.js            # init 命令实现
@@ -212,7 +212,7 @@ claude-test/
 │   │   ├── file-manager.js    # 文件操作工具
 │   │   └── version-manager.js # 版本管理工具
 │   └── templates/
-│       └── .claude/           # 框架模板文件
+│       └── .opencode/           # 框架模板文件
 ├── test/
 │   ├── commands/
 │   └── utils/
@@ -223,7 +223,7 @@ claude-test/
 
 ### 版本管理策略
 - 使用语义化版本控制 (SemVer)
-- 在 `.claude/.framework-version` 记录版本信息
+- 在 `.opencode/.framework-version` 记录版本信息
 - 支持版本检查和更新提醒
 
 ### 错误处理策略

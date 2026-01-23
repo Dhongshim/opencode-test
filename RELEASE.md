@@ -1,6 +1,6 @@
 # Release Guide
 
-This document outlines the release process for claude-test.
+This document outlines the release process for opencode-test.
 
 ## Release Types
 
@@ -126,7 +126,7 @@ npm publish
 
 ### 4. Create GitHub Release
 
-- Go to [GitHub Releases](https://github.com/anthropics/claude-test/releases)
+- Go to [GitHub Releases](https://github.com/anthropics/opencode-test/releases)
 - Click "Draft a new release"
 - Select the tag you just created
 - Generate release notes
@@ -140,14 +140,14 @@ After release, verify everything works:
 
 ```bash
 # Install from NPM
-npm install -g claude-test@latest
+npm install -g opencode-test@latest
 
 # Verify version
-claude-test --version
+opencode-test --version
 
 # Test basic functionality
-claude-test --help
-claude-test init --help
+opencode-test --help
+opencode-test init --help
 ```
 
 ### 2. GitHub Release
@@ -200,7 +200,7 @@ If a release fails partway through:
    ```bash
    git log --oneline -5
    git tag -l | grep v
-   npm view claude-test version
+   npm view opencode-test version
    ```
 
 2. **Reset if needed**:
@@ -286,5 +286,5 @@ For critical bugs requiring immediate release:
 ## Contact
 
 For release issues or questions:
-- GitHub Issues: [Report a problem](https://github.com/anthropics/claude-test/issues)
-- GitHub Discussions: [Ask questions](https://github.com/anthropics/claude-test/discussions)
+- GitHub Issues: [Report a problem](https://github.com/anthropics/opencode-test/issues)
+- GitHub Discussions: [Ask questions](https://github.com/anthropics/opencode-test/discussions)

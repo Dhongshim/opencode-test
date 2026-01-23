@@ -1,27 +1,27 @@
-# Claude Test Examples
+# opencode Test Examples
 
-This directory contains practical examples to help you get started with claude-test.
+This directory contains practical examples to help you get started with opencode-test.
 
 ## Quick Start Example
 
 Follow these steps to run the example tests:
 
-1. **Initialize claude-test in this directory:**
+1. **Initialize opencode-test in this directory:**
    ```bash
    cd examples
-   claude-test init
+   opencode-test init
    ```
 
 2. **Copy example files:**
    ```bash
    # Copy test cases
-   cp test-cases/* .claude/test-cases/
+   cp test-cases/* .opencode/test-cases/
    
    # Copy step libraries  
-   cp steps/* .claude/steps/
+   cp steps/* .opencode/steps/
    
    # Copy test suites
-   cp test-suites/* .claude/test-suites/
+   cp test-suites/* .opencode/test-suites/
    
    # Copy environment files
    cp .env.* .

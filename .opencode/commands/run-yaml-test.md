@@ -20,7 +20,7 @@ You need to help me execute a YAML format Playwright test case. This test case m
 **BREAKTHROUGH: Playwright MCP now supports persistent session across commands**
 
 Execution workflow:
-1. **Use the automated processor**: Run `node .claude/scripts/yaml-test-processor.js` with appropriate parameters to get processed test cases
+1. **Use the automated processor**: Run `node .opencode/scripts/yaml-test-processor.js` with appropriate parameters to get processed test cases
 2. **Optimize execution strategy**: Leverage persistent session across all executions
 3. **Execute processed steps**: Use the processor output directly with Playwright MCP to execute test steps
 4. **MANDATORY: Execute ALL matching test cases**: When using tag filtering, execute ALL test cases that match the criteria
@@ -33,7 +33,7 @@ Execution workflow:
 **How it works**:
 - **First login**: Any test that performs login automatically saves session state
 - **Automatic restoration**: All subsequent tests automatically restore login session
-- **Cross-command persistence**: Session remains valid even after restarting Claude Code
+- **Cross-command persistence**: Session remains valid even after restarting opencode Code
 - **Zero login time**: After first login, all tests skip login completely
 
 **Available Session Strategies**:
@@ -60,7 +60,7 @@ Execution workflow:
 
 ### Automated Processing Command:
 ```bash
-node .claude/scripts/yaml-test-processor.js --env={env} --tags={tags} --file={file}
+node .opencode/scripts/yaml-test-processor.js --env={env} --tags={tags} --file={file}
 ```
 
 ### Manual Processing (Legacy - use only if processor fails):
@@ -78,7 +78,7 @@ node .claude/scripts/yaml-test-processor.js --env={env} --tags={tags} --file={fi
 5. Check GENERATE_REPORT environment variable and generate test reports if enabled:
    - If GENERATE_REPORT=true, use the **TWO-STEP REPORT GENERATION PROCESS**
    - **STEP 1**: Create report data file using create-report-data.js helper functions
-   - **STEP 2**: Generate report using: `node .claude/scripts/gen-report.js --data=/path/to/data.json`
+   - **STEP 2**: Generate report using: `node .opencode/scripts/gen-report.js --data=/path/to/data.json`
    - **NO DYNAMIC CODE EXECUTION**: All data is pre-structured in JSON files
    - **CRITICAL**: Use the ReportDataCreator helper functions to structure data properly
    - **CRITICAL**: Ensure executionResult contains proper status, duration, and steps data for each test
@@ -86,7 +86,7 @@ node .claude/scripts/yaml-test-processor.js --env={env} --tags={tags} --file={fi
 
 **STEP 1: Create Report Data File**
 ```javascript
-const { createAndSaveTestData } = require('./.claude/scripts/create-report-data.js');
+const { createAndSaveTestData } = require('./.opencode/scripts/create-report-data.js');
 
 // Single Test Case Data Creation
 const testCase = {
@@ -126,7 +126,7 @@ createAndSaveTestData(testCase, execution, 'test-data.json', options);
 
 **Batch Test Cases Data Creation**:
 ```javascript
-const { createAndSaveBatchData } = require('./.claude/scripts/create-report-data.js');
+const { createAndSaveBatchData } = require('./.opencode/scripts/create-report-data.js');
 
 const testCases = [
   { name: 'sort.yml', description: 'Sorting test', tags: ['smoke'], steps: [...] },
@@ -167,7 +167,7 @@ createAndSaveBatchData(testCases, execution, 'batch-data.json', options);
 
 **Quick Data Creation (for simple cases)**:
 ```javascript
-const { quickCreateTestData } = require('./.claude/scripts/create-report-data.js');
+const { quickCreateTestData } = require('./.opencode/scripts/create-report-data.js');
 
 // Quick create test data - automatically saves to REPORT_PATH environment variable location
 quickCreateTestData(
@@ -188,16 +188,16 @@ quickCreateTestData(
 ```bash
 # Generate report from data file using the gen-report.js script in scripts directory
 # Data files are automatically saved to REPORT_PATH, so use relative path:
-node .claude/scripts/gen-report.js --data=test-data.json
-node .claude/scripts/gen-report.js --data=batch-data.json
+node .opencode/scripts/gen-report.js --data=test-data.json
+node .opencode/scripts/gen-report.js --data=batch-data.json
 # Or use absolute path if needed:
-node .claude/scripts/gen-report.js --data=/absolute/path/to/data.json
+node .opencode/scripts/gen-report.js --data=/absolute/path/to/data.json
 ```
 
 **Complete Two-Step Workflow Example**:
 ```javascript
 // Step 1: AI creates data file after test execution
-const { quickCreateTestData } = require('./.claude/scripts/create-report-data.js');
+const { quickCreateTestData } = require('./.opencode/scripts/create-report-data.js');
 quickCreateTestData('sort.yml', 'passed', 30000, 'latest-test.json', {
   environment: 'dev',
   tags: ['smoke'],
@@ -205,7 +205,7 @@ quickCreateTestData('sort.yml', 'passed', 30000, 'latest-test.json', {
 });
 
 // Step 2: AI executes report generation command
-// node .claude/scripts/gen-report.js --data=latest-test.json
+// node .opencode/scripts/gen-report.js --data=latest-test.json
 ```
 
    - **NO DYNAMIC CODE EXECUTION** - all data is pre-structured in JSON files
